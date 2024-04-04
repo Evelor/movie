@@ -5,7 +5,7 @@
     <h1>Список фильмов:</h1>
     @forelse ($movies as $movie)
         <div class="movie">
-            <h2><a href="{{ route('movie', ['id' => $movie->id]) }}">{{ $movie->name }}</a></h2>
+            <h2><a href="{{ route('show', ['id' => $movie->id]) }}">{{ $movie->localisation }}</a></h2>
             @if (!empty($movie->average_rating))
                 <p>Рейтинг: {{ $movie->average_rating }}</p>
             @endif
@@ -13,5 +13,7 @@
     @empty
         <p>Нет фильмов.</p>
     @endforelse
+    <a href="{{ route('create') }}" class="btn btn-primary mb-3">Create Post</a>
 </div>
+
 @endsection

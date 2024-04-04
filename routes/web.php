@@ -20,5 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/movies', [App\Http\Controllers\MovieController::class, 'index'])->name('movies');
-Route::get('/movies/{id}', [App\Http\Controllers\MovieController::class, 'show'])->name('movie');
+Route::get('/movies', [App\Http\Controllers\MovieController::class, 'index'])->name('index');
+Route::get('/movies/create', [App\Http\Controllers\MovieController::class, 'create'])->name('create');
+
+
+Route::get('/movies/{id}', [App\Http\Controllers\MovieController::class, 'show'])->name('show');
