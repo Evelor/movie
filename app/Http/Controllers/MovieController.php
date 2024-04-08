@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use App\Models\Rating;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MovieController extends Controller
 {
@@ -67,12 +69,38 @@ class MovieController extends Controller
     }
 
 
-    public function destroy(Movie $movie, int $id): RedirectResponse
+    public function destroy(Request $request, Movie $movie, int $id): RedirectResponse
     {
         $movie = $movie->whereId($id)->firstOrFail();
         $movie->delete();
 
         return redirect()->route('index')
             ->with('success', 'The movie deleted successfully');
+    }
+    public function rateMovie(Request $request, Movie $movie, int $id): RedirectResponse
+    {
+        $user = Auth::user();
+
+        $movie = $movie->findOrFail($id);
+
+       if ($movie->ratedBy($user)) {
+
+           $rating = $movie->ratings()->where('user_id', $user->id)->first();
+           $rating->rating = $request->rating;
+           $rating->save();
+       } else {
+           $rating = Rating::create([
+               'user_id' => auth()->id(),
+               'movie_id' => $movie->id,
+               'rating' => $request->rating,
+           ]);
+           $movie->ratings()->save($rating);
+//        }
+       }
+
+
+        return redirect()->route('index')
+            ->with('success', 'The movie has been rate');
+
     }
 }

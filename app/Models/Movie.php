@@ -21,4 +21,11 @@ class Movie extends Model
     {
         return round($this->ratings()->avg('rating'), 1);
     }
+
+    public function ratedBy(User $user): bool
+    {
+
+       // $this->ratings()->allwherePivot('user_id', $user->id)->exists();
+        return  $this->ratings()->where('user_id', $user->id)->exists();
+    }
 }

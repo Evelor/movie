@@ -30,3 +30,4 @@ Route::get('/movies/{id}', [App\Http\Controllers\MovieController::class, 'show']
 Route::get('/movies/{id}/edit', [App\Http\Controllers\MovieController::class, 'edit'])->name('edit');
 Route::put('/movies/{id}', [App\Http\Controllers\MovieController::class, 'update'])->name('update');
 Route::delete('/movies/{id}', [App\Http\Controllers\MovieController::class, 'destroy'])->name('destroy');
+Route::post('/movies/{id}', [App\Http\Controllers\MovieController::class, 'rateMovie'])->name('rateMovie');
