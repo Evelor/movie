@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
     use HasFactory;
-    protected $fillable = [];
+    protected $fillable = ['localisation', 'name', 'year', 'director', 'image'];
+
+
 
     public function ratings(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

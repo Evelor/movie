@@ -13,7 +13,7 @@
     @empty
         <p>Нет фильмов.</p>
     @endforelse
-    <a href="{{ route('create') }}" class="btn btn-primary mb-3">Create Post</a>
+    <a href="{{ route('create') }}" class="btn btn-primary mb-3">Добавить фильм</a>
 </div>
 
 @endsection

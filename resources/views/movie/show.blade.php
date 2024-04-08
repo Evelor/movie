@@ -9,6 +9,12 @@
                 <p>Рейтинг: {{ $movie->average_rating }}</p>
             @endif
         </div>
+    <a href="{{ route('edit', ['id' => $movie->id]) }}" class="btn btn-primary">Изменить</a>
+    <form action="{{ route('destroy',['id' => $movie->id]) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
 </div>
 @endsection
 
