@@ -103,4 +103,5 @@ class MovieController extends Controller
             ->with('success', 'The movie has been rate');
 
     }
+
 }
